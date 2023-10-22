@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Gyro extends SubsystemBase {
   static final Pigeon2 gyro = new Pigeon2(10, "rio");
-  double yaw;
-  double pitch;
-  double roll;
-  double yawAccel;
-  double pitchAccel;
-  double rollAccel;
+  static double yaw;
+  static double pitch;
+  static double roll;
+  static double yawAccel;
+  static double pitchAccel;
+  static double rollAccel;
   /** Creates a new Gyro. */
   public Gyro() {
     gyro.setYaw(0);
@@ -43,5 +43,9 @@ public class Gyro extends SubsystemBase {
     SmartDashboard.putNumber("Gyro/Roll Acceleration", rollAccel);
 
     
+  }
+
+  public void resetYaw() {
+    gyro.setYaw(0);
   }
 }

@@ -26,15 +26,8 @@ public class Constants {
 
         /* Chassis Configuration */
         public static final double kTrackWidth = Units.inchesToMeters(25); /* Distance Between right & left wheels */
-        public static final double kWheelBase = Units.inchesToMeters(25); /* Distance between front & back wheels */ // TODO:
-                                                                                                                     // Measure
-                                                                                                                     // out
-                                                                                                                     // real
-                                                                                                                     // chassis
-                                                                                                                     // and
-                                                                                                                     // adjust
-                                                                                                                     // these
-                                                                                                                     // parameters
+        public static final double kWheelBase = Units.inchesToMeters(25); /* Distance between front & back wheels */ // TODO: Measure Real Chasssis
+                                                                                                                     // 
 
         public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
                 new Translation2d(kWheelBase / 2, kTrackWidth / 2),
@@ -49,15 +42,15 @@ public class Constants {
         public static final double kBackRightChassisAngularOffset = Math.PI / 2;
 
         /* SparkMAX CAN IDs */ // TODO: CHANGE TO REAL CAN IDs
-        public static final int kFrontLeftDrivingCanId = 11;
-        public static final int kRearLeftDrivingCanId = 13;
-        public static final int kFrontRightDrivingCanId = 15;
-        public static final int kRearRightDrivingCanId = 17;
+        public static final int kFrontLeftDrivingCanId = 21;
+        public static final int kRearLeftDrivingCanId = 41;
+        public static final int kFrontRightDrivingCanId = 11;
+        public static final int kRearRightDrivingCanId = 31;
 
-        public static final int kFrontLeftTurningCanId = 10;
-        public static final int kRearLeftTurningCanId = 12;
-        public static final int kFrontRightTurningCanId = 14;
-        public static final int kRearRightTurningCanId = 16;
+        public static final int kFrontLeftTurningCanId = 22;
+        public static final int kRearLeftTurningCanId = 42;
+        public static final int kFrontRightTurningCanId = 12;
+        public static final int kRearRightTurningCanId = 32;
 
         public static final boolean kGyroReversed = false;
     }
