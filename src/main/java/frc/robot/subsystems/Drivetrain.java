@@ -35,12 +35,12 @@ public class Drivetrain extends SubsystemBase {
   private final SwerveModule m_rearLeft = new SwerveModule(
       DriveConstants.kRearLeftDrivingCanId,
       DriveConstants.kRearLeftTurningCanId,
-      DriveConstants.kBackLeftChassisAngularOffset);
+      DriveConstants.kRearLeftChassisAngularOffset);
 
   private final SwerveModule m_rearRight = new SwerveModule(
       DriveConstants.kRearRightDrivingCanId,
       DriveConstants.kRearRightTurningCanId,
-      DriveConstants.kBackRightChassisAngularOffset); 
+      DriveConstants.kRearRightChassisAngularOffset); 
 
   private double m_currentRotation = 0.0;
   private double m_currentTranslationDir = 0.0;

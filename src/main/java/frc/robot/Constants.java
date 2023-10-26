@@ -38,8 +38,8 @@ public class Constants {
         /* Angular Offsets of Modules relative to Chassis in radians */
         public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2;
         public static final double kFrontRightChassisAngularOffset = 0;
-        public static final double kBackLeftChassisAngularOffset = Math.PI;
-        public static final double kBackRightChassisAngularOffset = Math.PI / 2;
+        public static final double kRearLeftChassisAngularOffset = Math.PI;
+        public static final double kRearRightChassisAngularOffset = Math.PI / 2;
 
         /* SparkMAX CAN IDs */ // TODO: CHANGE TO REAL CAN IDs
         public static final int kFrontLeftDrivingCanId = 21;
