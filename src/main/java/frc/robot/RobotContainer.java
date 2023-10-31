@@ -16,9 +16,12 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -36,7 +39,7 @@ public class RobotContainer {
   /* PDH in Code to allow for data logging */
   public static PowerDistribution m_pdp;
   /* Controllers */
-  private final CommandXboxController driverController = new CommandXboxController(0);
+  private static final CommandXboxController driverController = new CommandXboxController(0);
 
   public RobotContainer() {
     m_drivetrain = new Drivetrain();
@@ -106,12 +109,15 @@ public class RobotContainer {
     return swerveControllerCommand.andThen(() -> m_drivetrain.drive(0, 0, 0, false, false));
   }
 
+    public static CommandXboxController getDriverController() {
+        return driverController;
+    }
     public void disabledInit() {
 
     }
   
 
     public void enabledInit() {
-        
+
     }
 }
