@@ -39,7 +39,7 @@ public class RobotContainer {
   /* PDH in Code to allow for data logging */
   public static PowerDistribution m_pdp;
   /* Controllers */
-  private static final CommandXboxController driverController = new CommandXboxController(0);
+  private final CommandXboxController driverController = new CommandXboxController(0);
 
   public RobotContainer() {
     m_drivetrain = new Drivetrain();
@@ -109,9 +109,7 @@ public class RobotContainer {
     return swerveControllerCommand.andThen(() -> m_drivetrain.drive(0, 0, 0, false, false));
   }
 
-    public static CommandXboxController getDriverController() {
-        return driverController;
-    }
+
     public void disabledInit() {
 
     }

@@ -26,8 +26,15 @@ public class Constants {
 
         /* Chassis Configuration */
         public static final double kTrackWidth = Units.inchesToMeters(25); /* Distance Between right & left wheels */
-        public static final double kWheelBase = Units.inchesToMeters(25); /* Distance between front & back wheels */ // TODO: Measure Real Chasssis
-                                                                                                                     // 
+        public static final double kWheelBase = Units.inchesToMeters(25); /* Distance between front & back wheels */ // TODO:
+                                                                                                                     // Measure
+                                                                                                                     // out
+                                                                                                                     // real
+                                                                                                                     // chassis
+                                                                                                                     // and
+                                                                                                                     // adjust
+                                                                                                                     // these
+                                                                                                                     // parameters
 
         public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
                 new Translation2d(kWheelBase / 2, kTrackWidth / 2),
@@ -42,15 +49,15 @@ public class Constants {
         public static final double kRearRightChassisAngularOffset = Math.PI / 2;
 
         /* SparkMAX CAN IDs */ // TODO: CHANGE TO REAL CAN IDs
-        public static final int kFrontLeftDrivingCanId = 21;
-        public static final int kRearLeftDrivingCanId = 41;
-        public static final int kFrontRightDrivingCanId = 11;
-        public static final int kRearRightDrivingCanId = 31;
+        public static final int kFrontLeftDrivingCanId = 11;
+        public static final int kRearLeftDrivingCanId = 31;
+        public static final int kFrontRightDrivingCanId = 21;
+        public static final int kRearRightDrivingCanId = 41;
 
-        public static final int kFrontLeftTurningCanId = 22;
-        public static final int kRearLeftTurningCanId = 42;
-        public static final int kFrontRightTurningCanId = 12;
-        public static final int kRearRightTurningCanId = 32;
+        public static final int kFrontLeftTurningCanId = 12;
+        public static final int kRearLeftTurningCanId = 32;
+        public static final int kFrontRightTurningCanId = 22;
+        public static final int kRearRightTurningCanId = 42;
 
         public static final boolean kGyroReversed = false;
     }
@@ -124,9 +131,9 @@ public class Constants {
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
-        public static final double kPXController = 1;
+        public static final double kPXController = 1; 
         public static final double kPYController = 1;
-        public static final double kPThetaController = 1;
+        public static final double kPThetaController = 1; /* Controls the Rotation of the Robot during Auton */
 
         // Constraint for the motion profiled robot angle controller
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(
