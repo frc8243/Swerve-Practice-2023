@@ -1,4 +1,33 @@
 {
+  "HALProvider": {
+    "Other Devices": {
+      "Pigeon 2 (Pro)[2]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [22]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [32]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [41]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [42]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo"
