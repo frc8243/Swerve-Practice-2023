@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.*;
+import frc.robot.commands.auton.Trajectories;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.Vision;
@@ -38,6 +39,7 @@ public class RobotContainer {
   public static Vision m_vision;
   /* PDH in Code to allow for data logging */
   public static PowerDistribution m_pdp;
+  public boolean fieldOrientedDrive = true;
   /* Controllers */
   private final CommandXboxController driverController = new CommandXboxController(0);
 
@@ -50,10 +52,10 @@ public class RobotContainer {
     m_drivetrain.setDefaultCommand(
         new RunCommand(
             () -> m_drivetrain.drive(
-                -MathUtil.applyDeadband(driverController.getRawAxis(1), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(driverController.getRawAxis(0), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(driverController.getRawAxis(4), OIConstants.kDriveDeadband),
-                true, true),
+                -MathUtil.applyDeadband(driverController.getLeftY(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(driverController.getLeftX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(driverController.getRightX(), OIConstants.kDriveDeadband),
+                fieldOrientedDrive, true),
             m_drivetrain));
   }
 
@@ -66,32 +68,26 @@ public class RobotContainer {
         () -> m_drivetrain.setX(),
         m_drivetrain));
 
+    driverController.b().onTrue(new InstantCommand(
+      () -> fieldOrientedDrive = !fieldOrientedDrive
+    ));
+
+    driverController.start().onTrue(new InstantCommand(
+      () -> m_gyro.resetYaw(),
+      m_gyro));
   }
 
+  
+
   public Command getAutonomousCommand() {
-    // Create config for trajectory
-    TrajectoryConfig config = new TrajectoryConfig(
-        AutoConstants.kMaxSpeedMetersPerSecond,
-        AutoConstants.kMaxAccelerationMetersPerSecondSquared)
-        // Add kinematics to ensure max speed is actually obeyed
-        .setKinematics(DriveConstants.kDriveKinematics);
-
-    // An example trajectory to follow. All units in meters.
-    Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
-        // Start at the origin facing the +X direction
-        new Pose2d(0, 0, new Rotation2d(0)),
-        // Pass through these two interior waypoints, going straight
-        List.of(new Translation2d(1, 0), new Translation2d(2, 0)),
-        // End 3 meters straight ahead of where we started, facing forward
-        new Pose2d(3, 0, new Rotation2d(0)),
-        config);
-
     var thetaController = new ProfiledPIDController(
         AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
     thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
+    Trajectory selectedTrajectory = Trajectories.translationGenerator(1,-1);
+
     SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
-        exampleTrajectory,
+        selectedTrajectory,
         m_drivetrain::getPose, // Functional interface to feed supplier
         DriveConstants.kDriveKinematics,
 
@@ -103,7 +99,7 @@ public class RobotContainer {
         m_drivetrain);
 
     // Reset odometry to the starting pose of the trajectory.
-    m_drivetrain.resetOdometry(exampleTrajectory.getInitialPose());
+    m_drivetrain.resetOdometry(selectedTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
     return swerveControllerCommand.andThen(() -> m_drivetrain.drive(0, 0, 0, false, false));
@@ -111,7 +107,7 @@ public class RobotContainer {
 
 
     public void disabledInit() {
-
+      m_drivetrain.setX();
     }
   
 
