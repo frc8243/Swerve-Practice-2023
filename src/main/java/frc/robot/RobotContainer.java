@@ -31,6 +31,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.Vision;
 
+@SuppressWarnings("unused") // i dislike being warned for unused imports. 
 public class RobotContainer {
   private static RobotContainer m_robotContainer = new RobotContainer();
   /* Subsystem Creation */
@@ -64,17 +65,13 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    driverController.a().whileTrue(new RunCommand(
-        () -> m_drivetrain.setX(),
-        m_drivetrain));
+    driverController.a().whileTrue(new RunCommand(m_drivetrain::setX));
 
     driverController.b().onTrue(new InstantCommand(
       () -> fieldOrientedDrive = !fieldOrientedDrive
     ));
 
-    driverController.start().onTrue(new InstantCommand(
-      () -> m_gyro.resetYaw(),
-      m_gyro));
+    driverController.start().onTrue(new InstantCommand(m_gyro::resetYaw));
   }
 
   
