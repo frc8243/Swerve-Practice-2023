@@ -46,6 +46,6 @@ public class ColorSensor extends SubsystemBase {
     } else {
       colorString = "Unknown";
     }
-    System.out.println("Red: " + m_colorSensor.getRed() + "Green:" + m_colorSensor.getGreen() + "Blue: " + m_colorSensor.getBlue());
+    // System.out.println("Red: " + m_colorSensor.getRed() + "Green:" + m_colorSensor.getGreen() + "Blue: " + m_colorSensor.getBlue());
   }
 }

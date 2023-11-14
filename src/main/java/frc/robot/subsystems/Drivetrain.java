@@ -74,15 +74,15 @@ public class Drivetrain extends SubsystemBase {
   
   /** Creates a new Drivetrain. */
   public Drivetrain() {
-    AutoBuilder.configureHolonomic(
-      this::getPose,
-      this::resetOdometry,
-      this::getRobotRelativeSpeeds,
-      this::driveRobotRelative,
-      new HolonomicPathFollowerConfig(
-        new PIDConstants(5.0, 0, 0),
-      )
-    );
+    // AutoBuilder.configureHolonomic(
+    //   this::getPose,
+    //   this::resetOdometry,
+    //   this::getRobotRelativeSpeeds,
+    //   this::driveRobotRelative,
+    //   new HolonomicPathFollowerConfig(
+    //     new PIDConstants(5.0, 0, 0),
+    //   )
+    // );
   }
 
 
