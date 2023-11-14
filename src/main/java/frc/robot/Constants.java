@@ -6,6 +6,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.util.Color;
 
 /**
  * Constants for various use around the robot. Single line comments (//) are
@@ -142,5 +143,11 @@ public class Constants {
 
     public static final class NeoMotorConstants {
         public static final double kFreeSpeedRpm = 5676;
+    }
+    public static final class ColorConstants{
+        public static final Color kBlueTarget = new Color(0.143, 0.427, 0.429);
+        public static final Color kGreenTarget = new Color(0.197, 0.561, 0.240);
+        public static final Color kRedTarget = new Color(0.561, 0.232, 0.114);
+        public static final Color kYellowTarget = new Color(0.361, 0.524, 0.113);
     }
 }

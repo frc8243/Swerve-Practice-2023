@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.*;
 import frc.robot.commands.auton.Trajectories;
+import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.Vision;
@@ -38,6 +39,7 @@ public class RobotContainer {
   public static Drivetrain m_drivetrain;
   public static Gyro m_gyro;
   public static Vision m_vision;
+  public static ColorSensor m_colorSensor;
   /* PDH in Code to allow for data logging */
   public static PowerDistribution m_pdp;
   public boolean fieldOrientedDrive = true;
@@ -49,6 +51,8 @@ public class RobotContainer {
     m_gyro = new Gyro();
     m_pdp = new PowerDistribution(1, ModuleType.kRev);
     m_vision = new Vision();
+    m_colorSensor = new ColorSensor();
+
     configureBindings();
     m_drivetrain.setDefaultCommand(
         new RunCommand(
