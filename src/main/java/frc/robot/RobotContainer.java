@@ -72,6 +72,13 @@ public class RobotContainer {
     ));
 
     driverController.start().onTrue(new InstantCommand(m_gyro::resetYaw));
+
+    driverController.povUp().whileTrue(new RunCommand(() -> m_drivetrain.drive(
+      0.75,
+      0.0,
+      0.0,
+      true, true),
+  m_drivetrain));
   }
 
   

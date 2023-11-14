@@ -6,10 +6,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
-import com.pathplanner.lib.util.PIDConstants;
-import com.pathplanner.lib.util.ReplanningConfig;
+import com.pathplanner.lib.auto.PIDConstants;
+import com.pathplanner.lib.commands.*;
+import com.pathplanner.lib.controllers.*;
+import com.pathplanner.lib.server.*;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.SlewRateLimiter;
@@ -74,7 +74,15 @@ public class Drivetrain extends SubsystemBase {
   
   /** Creates a new Drivetrain. */
   public Drivetrain() {
-    
+    AutoBuilder.configureHolonomic(
+      this::getPose,
+      this::resetOdometry,
+      this::getRobotRelativeSpeeds,
+      this::driveRobotRelative,
+      new HolonomicPathFollowerConfig(
+        new PIDConstants(5.0, 0, 0),
+      )
+    );
   }
 
 
