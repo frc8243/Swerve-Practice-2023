@@ -30,6 +30,7 @@ import frc.robot.commands.auton.Trajectories;
 import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gyro;
+import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.Vision;
 
 @SuppressWarnings("unused") // i dislike being warned for unused imports. 
@@ -42,6 +43,7 @@ public class RobotContainer {
   public static ColorSensor m_colorSensor;
   /* PDH in Code to allow for data logging */
   public static PowerDistribution m_pdp;
+  public static LEDs m_leds;
   public boolean fieldOrientedDrive = true;
   /* Controllers */
   private final CommandXboxController driverController = new CommandXboxController(0);
@@ -52,6 +54,7 @@ public class RobotContainer {
     m_pdp = new PowerDistribution(1, ModuleType.kRev);
     m_vision = new Vision();
     m_colorSensor = new ColorSensor();
+    m_leds = new LEDs();
 
     configureBindings();
     m_drivetrain.setDefaultCommand(
@@ -62,6 +65,7 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(driverController.getRightX(), OIConstants.kDriveDeadband),
                 fieldOrientedDrive, true),
             m_drivetrain));
+    
   }
 
   public static RobotContainer getInstance() {
