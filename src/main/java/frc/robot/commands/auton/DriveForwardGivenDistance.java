@@ -5,11 +5,11 @@
 package frc.robot.commands.auton;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drivetrain;
 
 
-public class DriveForwardGivenDistance extends CommandBase {
+public class DriveForwardGivenDistance extends Command {
   /** Creates a new DriveForwardGivenDistance. */
   public DriveForwardGivenDistance(double Distance, Drivetrain m_drivetrain) {
     addRequirements(m_drivetrain);

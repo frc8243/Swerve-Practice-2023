@@ -6,10 +6,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.pathplanner.lib.auto.PIDConstants;
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.*;
 import com.pathplanner.lib.controllers.*;
-import com.pathplanner.lib.server.*;
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
+import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.SlewRateLimiter;
@@ -81,7 +83,12 @@ public class Drivetrain extends SubsystemBase {
       this::driveRobotRelative,
       new HolonomicPathFollowerConfig(
         new PIDConstants(5.0, 0, 0),
-      )
+        new PIDConstants(5.0, 0, 0),
+        DriveConstants.kMaxSpeedMetersPerSecond,
+        0.385, // METERS
+        new ReplanningConfig()
+      ),
+      this
     );
   }
 
@@ -106,7 +113,7 @@ public class Drivetrain extends SubsystemBase {
    *
    * @return The pose.
    */
-  public Pose2d getPose() {
+  public  Pose2d getPose() {
     return m_odometry.getPoseMeters();
   }
 

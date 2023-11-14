@@ -6,6 +6,10 @@ package frc.robot;
 
 import java.util.List;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.path.PathPlannerPath;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -15,6 +19,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -84,34 +89,34 @@ public class RobotContainer {
   
 
   public Command getAutonomousCommand() {
-    var thetaController = new ProfiledPIDController(
-        AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
-    thetaController.enableContinuousInput(-Math.PI, Math.PI);
+    // var thetaController = new ProfiledPIDController(
+    //     AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
+    // thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
-    Trajectory selectedTrajectory = Trajectories.translationGenerator(1,-1);
+    // Trajectory selectedTrajectory = Trajectories.translationGenerator(1,-1);
 
-    SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
-        selectedTrajectory,
-        m_drivetrain::getPose, // Functional interface to feed supplier
-        DriveConstants.kDriveKinematics,
+    // SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
+    //     selectedTrajectory,
+    //     m_drivetrain::getPose, // Functional interface to feed supplier
+    //     DriveConstants.kDriveKinematics,
 
-        // Position controllers
-        new PIDController(AutoConstants.kPXController, 0, 0),
-        new PIDController(AutoConstants.kPYController, 0, 0),
-        thetaController,
-        m_drivetrain::setModuleStates,
-        m_drivetrain);
+    //     // Position controllers
+    //     new PIDController(AutoConstants.kPXController, 0, 0),
+    //     new PIDController(AutoConstants.kPYController, 0, 0),
+    //     thetaController,
+    //     m_drivetrain::setModuleStates,
+    //     m_drivetrain);
 
-    // Reset odometry to the starting pose of the trajectory.
-    m_drivetrain.resetOdometry(selectedTrajectory.getInitialPose());
+    // // Reset odometry to the starting pose of the trajectory.
+    // m_drivetrain.resetOdometry(selectedTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return swerveControllerCommand.andThen(() -> m_drivetrain.drive(0, 0, 0, false, false));
+    PathPlannerPath path = PathPlannerPath.fromPathFile("path1");
+    return AutoBuilder.followPathWithEvents(path);
   }
 
 
     public void disabledInit() {
-      m_drivetrain.setX();
     }
   
 
