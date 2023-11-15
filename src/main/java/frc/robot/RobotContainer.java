@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -54,6 +55,10 @@ public class RobotContainer {
     m_gyro = new Gyro();
     m_pdp = new PowerDistribution(1, ModuleType.kRev);
     m_vision = new Vision();
+
+    SmartDashboard.putData(m_pdp);
+    SmartDashboard.putData(m_drivetrain);
+
     configureBindings();
     m_drivetrain.setDefaultCommand(
         new RunCommand(
@@ -61,8 +66,13 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(driverController.getRightX(), OIConstants.kDriveDeadband),
-                true, true),
+                fieldOrientedDrive, true),
             m_drivetrain));
+    
+    SmartDashboard.putNumber("Controls/Left Stick Y", driverController.getLeftY());
+    SmartDashboard.putNumber("Controls/Left Stick X", driverController.getLeftX());
+    SmartDashboard.putNumber("Controls/Right Stick X", driverController.getRightX());
+    SmartDashboard.putBoolean("Controls/Field Oriented", fieldOrientedDrive);
   }
 
   public static RobotContainer getInstance() {
