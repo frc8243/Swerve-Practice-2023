@@ -10,6 +10,11 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import frc.robot.Constants.*;
 
+
+/**
+ * Class regarding WPILib Trajectories, Will not be used.
+ * @author Julien
+ */
 public class Trajectories {
     static TrajectoryConfig config = new TrajectoryConfig(
         AutoConstants.kMaxSpeedMetersPerSecond,

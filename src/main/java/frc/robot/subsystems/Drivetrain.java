@@ -34,6 +34,7 @@ import frc.robot.subsystems.Gyro;
 import frc.robot.RobotContainer;
 
 
+@SuppressWarnings("unused")
 public class Drivetrain extends SubsystemBase {
   private final SwerveModule m_frontLeft = new SwerveModule(
       DriveConstants.kFrontLeftDrivingCanId,
@@ -117,19 +118,25 @@ public class Drivetrain extends SubsystemBase {
     return m_odometry.getPoseMeters();
   }
 
-  public void driveRobotRelative(ChassisSpeeds speeds) { // Method to automoously drive robot relative
+
+  /**
+   * Method to drive the robot relative to itself - not relative to the field. Used for Pathplanner
+   * @param speeds ChassisSpeeds provided by Pathplanner.
+   */
+  public void driveRobotRelative(ChassisSpeeds speeds) {
     this.drive(speeds.vxMetersPerSecond, speeds.vyMetersPerSecond, speeds.omegaRadiansPerSecond, false, false);
   }
 
+  /**
+   * Method to get the speed of the robot relative to itself. Used for Pathplanner
+   * @return ChassisSpeeds 
+   */
   public ChassisSpeeds getRobotRelativeSpeeds() {
     return DriveConstants.kDriveKinematics.toChassisSpeeds(m_frontLeft.getState(), m_frontRight.getState(), m_rearLeft.getState(), m_rearRight.getState());
   }
 
-  
-
   /**
    * Resets the odometry to the specified pose.
-   *
    * @param pose The pose to which to set the odometry.
    */
   public void resetOdometry(Pose2d pose) {
@@ -143,8 +150,6 @@ public class Drivetrain extends SubsystemBase {
         },
         pose);
   }
-
-  
 
   /**
    * Method to drive the robot using joystick info.
@@ -218,7 +223,6 @@ public class Drivetrain extends SubsystemBase {
         fieldRelative
             ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(Gyro.yaw))
             : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
-    // chassisSpeed = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(Gyro.yaw));
     SwerveDriveKinematics.desaturateWheelSpeeds(
         swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
     m_frontLeft.setDesiredState(swerveModuleStates[0]);
@@ -254,7 +258,9 @@ public class Drivetrain extends SubsystemBase {
     m_rearRight.setDesiredState(desiredStates[3]);
   }
 
-  /** `ts the drive encoders to currently read a position of 0. */
+  /** 
+   * Resets the drive encoders to currently read a position of 0. 
+   * */
   public void resetEncoders() {
     m_frontLeft.resetEncoders();
     m_rearLeft.resetEncoders();
