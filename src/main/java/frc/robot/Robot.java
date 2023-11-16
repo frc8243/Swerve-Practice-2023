@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -37,11 +38,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    RobotContainer.m_drivetrain.resetEncoders();
+    RobotContainer.m_drivetrain.resetOdometry(new Pose2d());
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+
   }
 
   @Override
@@ -58,6 +62,7 @@ public class Robot extends TimedRobot {
     else {
       m_robotContainer.enabledInit();
     }
+    m_robotContainer.fieldOrientedDrive = true;
   }
 
   @Override

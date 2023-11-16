@@ -7,6 +7,7 @@ package frc.robot;
 import java.util.List;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.path.PathPlannerPath;
 
@@ -59,7 +60,7 @@ public class RobotContainer {
     SmartDashboard.putData(m_pdp);
     SmartDashboard.putData(m_drivetrain);
 
-    configureBindings();
+    configureBindings(); 
     m_drivetrain.setDefaultCommand(
         new RunCommand(
             () -> m_drivetrain.drive(
@@ -80,20 +81,25 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    driverController.a().whileTrue(new RunCommand(m_drivetrain::setX));
+    driverController.a().whileTrue(
+      new RunCommand(m_drivetrain::setX)
+    );
 
-    driverController.b().onTrue(new InstantCommand(
-      () -> fieldOrientedDrive = !fieldOrientedDrive
-    ));
+    driverController.b().onTrue(
+      new InstantCommand(() -> fieldOrientedDrive = !fieldOrientedDrive)
+    );
 
-    driverController.start().onTrue(new InstantCommand(m_gyro::resetYaw));
+    driverController.start().onTrue(
+      new InstantCommand(m_gyro::resetYaw)
+    );
 
-    driverController.povUp().whileTrue(new RunCommand(() -> m_drivetrain.drive(
-      0.75,
-      0.0,
-      0.0,
-      true, true),
-  m_drivetrain));
+    driverController.povUp().whileTrue(
+      new RunCommand(() -> m_drivetrain.drive(
+        0.75, 0.0, 0.0,
+        true, true),
+      m_drivetrain
+      )
+    );
   }
 
   
@@ -121,8 +127,10 @@ public class RobotContainer {
     // m_drivetrain.resetOdometry(selectedTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    PathPlannerPath path = PathPlannerPath.fromPathFile("path1");
-    return AutoBuilder.followPathWithEvents(path);
+    // PathPlannerPath path = PathPlannerPath.fromPathFile("path1");
+    // return AutoBuilder.followPathWithEvents(path);
+
+    return new PathPlannerAuto("auto1");
   }
 
 

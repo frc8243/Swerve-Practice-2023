@@ -84,7 +84,7 @@ public class Drivetrain extends SubsystemBase {
       new HolonomicPathFollowerConfig(
         new PIDConstants(1.0, 0, 0), // Translation 
         new PIDConstants(1.0, 0, 0), // Rotation
-        DriveConstants.kMaxSpeedMetersPerSecond,
+        AutoConstants.kMaxSpeedMetersPerSecond,
         0.385, // METERS
         new ReplanningConfig()
       ),
@@ -143,6 +143,8 @@ public class Drivetrain extends SubsystemBase {
         },
         pose);
   }
+
+  
 
   /**
    * Method to drive the robot using joystick info.
@@ -252,7 +254,7 @@ public class Drivetrain extends SubsystemBase {
     m_rearRight.setDesiredState(desiredStates[3]);
   }
 
-  /** Resets the drive encoders to currently read a position of 0. */
+  /** `ts the drive encoders to currently read a position of 0. */
   public void resetEncoders() {
     m_frontLeft.resetEncoders();
     m_rearLeft.resetEncoders();
