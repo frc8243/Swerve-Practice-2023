@@ -38,10 +38,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    /* Resets drive encoders and robot pose so autons start from zero */
     RobotContainer.m_drivetrain.resetEncoders();
     RobotContainer.m_drivetrain.resetOdometry(new Pose2d());
+
+    /* Gets auton command from RobotContainer */
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
+    /* Only schedules autonomous command if one is selected */
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
