@@ -65,9 +65,10 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(driverController.getRightX(), OIConstants.kDriveDeadband),
                 fieldOrientedDrive, true),
             m_drivetrain));
-    
+    LEDs.frontHalf(255, 255, 0);
+  
+LEDs.backHalf(0, 200, 0);
   }
-
   public static RobotContainer getInstance() {
     return m_robotContainer;
   }

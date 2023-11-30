@@ -25,12 +25,33 @@ public class LEDs extends SubsystemBase {
     
   }
 
-  public static void setLights(int r, int g, int b) {
-    for (int i = 0; i < LEDBuffer.getLength(); i++) {
+  public static void frontHalf(int r, int g, int b) {
+    for (int i = 0; i < LEDBuffer.getLength()/2; i++) {
       LEDBuffer.setRGB(i, r, g, b);
 
       
     }
   }
+    public static void backHalf(int r, int g, int b) {
+      for (int i = LEDBuffer.getLength()/2+1; i < 60;i++) {
+        LEDBuffer.setRGB(i, r, g, b);
+  
+      } 
+    }
+      public static void allLEDS(int r, int g, int b) {
+        for (int i = 0; i < LEDBuffer.getLength(); i++) {
+          LEDBuffer.setRGB(i, r, g, b);
+    
+          
+        }
+      }   
+       
+      
 
+      
+      
   }
+
+
+
+  

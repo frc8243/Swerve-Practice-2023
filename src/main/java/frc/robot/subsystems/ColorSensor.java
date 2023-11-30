@@ -19,9 +19,10 @@ public class ColorSensor extends SubsystemBase {
 
   private final ColorMatch m_colorMatcher = new ColorMatch();
 
+  public  LEDs m_leds;
   
   public ColorSensor() {
-
+m_leds = new LEDs();
   }
 
   @Override
@@ -33,9 +34,11 @@ public class ColorSensor extends SubsystemBase {
     String colorString = "NoColor";
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
-   
+    LEDs.allLEDS(m_colorSensor.getRed(),m_colorSensor.getGreen(),m_colorSensor.getBlue()); //chNGES COLOR TO BLUE
+
 
     if (match.color == Constants.ColorConstants.kBlueTarget) {
+      
       colorString = "Blue";
     } else if (match.color == Constants.ColorConstants.kRedTarget) {
       colorString = "Red";
@@ -46,6 +49,6 @@ public class ColorSensor extends SubsystemBase {
     } else {
       colorString = "Unknown";
     }
-    // System.out.println("Red: " + m_colorSensor.getRed() + "Green:" + m_colorSensor.getGreen() + "Blue: " + m_colorSensor.getBlue());
+    System.out.println("Red: " + m_colorSensor.getRed() + "Green:" + m_colorSensor.getGreen() + "Blue: " + m_colorSensor.getBlue());
   }
 }
