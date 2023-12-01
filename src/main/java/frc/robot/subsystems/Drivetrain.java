@@ -84,7 +84,7 @@ public class Drivetrain extends SubsystemBase {
       this::driveRobotRelative,
       new HolonomicPathFollowerConfig(
         new PIDConstants(1.0, 0, 0), // Translation 
-        new PIDConstants(1.5, 0, 0), // Rotation
+        new PIDConstants(1.75, 0, 0), // Rotation
         AutoConstants.kMaxSpeedMetersPerSecond,
         0.385, // METERS
         new ReplanningConfig()
@@ -150,6 +150,9 @@ public class Drivetrain extends SubsystemBase {
         },
         pose);
   }
+  //  public void resetTrajectoryFromPath(){
+
+  //  }
 
   /**
    * Method to drive the robot using joystick info.

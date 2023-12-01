@@ -41,6 +41,7 @@ public class Robot extends TimedRobot {
     /* Resets drive encoders and robot pose so autons start from zero */
     RobotContainer.m_drivetrain.resetEncoders();
     RobotContainer.m_drivetrain.resetOdometry(new Pose2d());
+    RobotContainer.m_gyro.resetYaw();
 
     /* Gets auton command from RobotContainer */
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
