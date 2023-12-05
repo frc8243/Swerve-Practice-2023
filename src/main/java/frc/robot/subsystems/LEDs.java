@@ -17,8 +17,7 @@ public class LEDs extends SubsystemBase {
     LED.setLength(LEDBuffer.getLength());
     LED.setData(LEDBuffer);
     LED.start();
-    setLights(100,0,200);
-    setLights2(0, 100, 0);
+
 
 
   }
@@ -34,14 +33,9 @@ public class LEDs extends SubsystemBase {
     for (int i = 0; i < LEDBuffer.getLength()/2; i++) {
       LEDBuffer.setRGB(i, r, g, b);
 
-    public static void setLights(int R, int G, int B) {
-      for (int i =LEDBuffer.getLength()/2+1; i < LEDBuffer.getLength(); i++) {
-        LEDBuffer.setRGB(i, R, G, B);
-    
     }
+  } 
 
-    //LED.setData(LEDBuffer);
-  }
     public static void backHalf(int r, int g, int b) {
       for (int i = LEDBuffer.getLength()/2+1; i < 60;i++) {
         LEDBuffer.setRGB(i, r, g, b);
@@ -56,7 +50,7 @@ public class LEDs extends SubsystemBase {
         }
       }   
        
-      
+
 
       
       

@@ -22,17 +22,23 @@ public class ColorSensor extends SubsystemBase {
   public  LEDs m_leds;
   
   public ColorSensor() {
-m_leds = new LEDs();
+    m_leds = new LEDs();
+     m_colorMatcher.addColorMatch(Constants.ColorConstants.kBlueTarget);
+     m_colorMatcher.addColorMatch(Constants.ColorConstants.kGreenTarget);
+     m_colorMatcher.addColorMatch(Constants.ColorConstants.kRedTarget);
+     m_colorMatcher.addColorMatch(Constants.ColorConstants.kYellowTarget);
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    System.out.println("ColorSensorRunning");
+    //System.out.println("ColorSensorRunning");
     Color detectedColor = m_colorSensor.getColor();
+    //Color detectedColor = new Color(1, 0, 0);
 
     String colorString = "NoColor";
-    ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+    ColorMatchResult match = m_colorMatcher.matchClosestColor(new Color(detectedColor.red/255,detectedColor.green/255,detectedColor.blue/255));
 
     LEDs.allLEDS(m_colorSensor.getRed(),m_colorSensor.getGreen(),m_colorSensor.getBlue()); //chNGES COLOR TO BLUE
 
@@ -49,6 +55,10 @@ m_leds = new LEDs();
     } else {
       colorString = "Unknown";
     }
+    System.out.println("Matched Color " + colorString + match.color + "Confidence: " + match.confidence );
+
+    System.out.println("Detected Color R =  " + detectedColor.red + "Detected Color G =" + detectedColor.green +"Detected Color B =" + detectedColor.blue );
     System.out.println("Red: " + m_colorSensor.getRed() + "Green:" + m_colorSensor.getGreen() + "Blue: " + m_colorSensor.getBlue());
   }
+
 }

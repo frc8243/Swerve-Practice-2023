@@ -145,9 +145,9 @@ public class Constants {
         public static final double kFreeSpeedRpm = 5676;
     }
     public static final class ColorConstants{
-        public static final Color kBlueTarget = new Color(0.143, 0.427, 0.429);
-        public static final Color kGreenTarget = new Color(0.197, 0.561, 0.240);
-        public static final Color kRedTarget = new Color(0.561, 0.232, 0.114);
-        public static final Color kYellowTarget = new Color(0.361, 0.524, 0.113);
+        public static final Color kBlueTarget = new Color(0.086, 0.196, 0.121);
+        public static final Color kGreenTarget = new Color(0.071, 0.172, 0.051);
+        public static final Color kRedTarget = new Color(0.294, 0.129, 0.023);
+        public static final Color kYellowTarget = new Color(0.572, 0.6, 0.09);
     }
 }
