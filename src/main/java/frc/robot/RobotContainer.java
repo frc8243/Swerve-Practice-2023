@@ -81,15 +81,15 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    driverController.a().whileTrue(
+    driverController.x().whileTrue(
       new RunCommand(m_drivetrain::setX)
     );
 
-    driverController.b().onTrue(
+    driverController.start().onTrue(
       new InstantCommand(() -> fieldOrientedDrive = !fieldOrientedDrive)
     );
 
-    driverController.start().onTrue(
+    driverController.y().onTrue(
       new InstantCommand(m_gyro::resetYaw)
     );
 
