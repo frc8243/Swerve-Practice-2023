@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -50,6 +51,7 @@ public class RobotContainer {
   public boolean fieldOrientedDrive = true;
   /* Controllers */
   private final CommandXboxController driverController = new CommandXboxController(0);
+  private final SendableChooser<Command> autoChooser;
 
   public RobotContainer() {
     m_drivetrain = new Drivetrain();
@@ -74,6 +76,8 @@ public class RobotContainer {
     SmartDashboard.putNumber("Controls/Left Stick X", driverController.getLeftX());
     SmartDashboard.putNumber("Controls/Right Stick X", driverController.getRightX());
     SmartDashboard.putBoolean("Controls/Field Oriented", fieldOrientedDrive);
+    autoChooser = AutoBuilder.buildAutoChooser();
+    SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 
   public static RobotContainer getInstance() {
@@ -99,6 +103,10 @@ public class RobotContainer {
         true, true),
       m_drivetrain
       )
+    );
+
+    driverController.back().onTrue(
+      new InstantCommand(m_drivetrain::resetEncoders)
     );
   }
 
@@ -130,7 +138,7 @@ public class RobotContainer {
     // PathPlannerPath path = PathPlannerPath.fromPathFile("path1");
     // return AutoBuilder.followPathWithEvents(path);
 
-    return new PathPlannerAuto("auto1");
+    return autoChooser.getSelected();
   }
 
 

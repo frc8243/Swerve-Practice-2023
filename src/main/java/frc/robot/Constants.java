@@ -89,8 +89,8 @@ public class Constants {
         /* Math to figure out speed and position of wheel */
         public static final double kDriveWheelFreeSpeedRps = (kDrivingMotorFreeSpeedRps * kWheelCircumferenceMeters)
                 / kDrivingMotorReduction;
-        public static final double kDrivingEncoderPositionFactor = (kWheelDiameterMeters * Math.PI)
-                / kDrivingMotorReduction; // meters
+        public static final double kDrivingEncoderPositionFactor = ((kWheelDiameterMeters * Math.PI)
+                / kDrivingMotorReduction) / 1.03185; // meters
         public static final double kDrivingEncoderVelocityFactor = ((kWheelDiameterMeters * Math.PI)
                 / kDrivingMotorReduction) / 60.0; // meters per second
 

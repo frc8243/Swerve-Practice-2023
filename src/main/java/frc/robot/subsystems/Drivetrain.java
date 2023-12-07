@@ -106,6 +106,11 @@ public class Drivetrain extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
         });
+    
+    SmartDashboard.putNumber("Drivetrain/Front Right Drive Encoder", m_frontRight.getDriveEncoderReading());
+    SmartDashboard.putNumber("Drivetrain/Front Left Drive Encoder", m_frontLeft.getDriveEncoderReading());
+    SmartDashboard.putNumber("Drivetrain/Rear Right Drive Encoder", m_rearRight.getDriveEncoderReading());
+    SmartDashboard.putNumber("Drivetrain/RearR Left Drive Encoder", m_rearLeft.getDriveEncoderReading());
     // This method will be called once per scheduler run
   }
 

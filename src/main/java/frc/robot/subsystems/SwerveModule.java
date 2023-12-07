@@ -163,4 +163,8 @@ public class SwerveModule {
   public void resetEncoders() {
     m_drivingEncoder.setPosition(0);
   }
+
+  public double getDriveEncoderReading() {
+    return m_drivingEncoder.getPosition();
+  }
 }
