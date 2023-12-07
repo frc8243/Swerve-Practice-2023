@@ -23,10 +23,10 @@ public class ColorSensor extends SubsystemBase {
   
   public ColorSensor() {
     m_leds = new LEDs();
-     m_colorMatcher.addColorMatch(Constants.ColorConstants.kBlueTarget);
-     m_colorMatcher.addColorMatch(Constants.ColorConstants.kGreenTarget);
-     m_colorMatcher.addColorMatch(Constants.ColorConstants.kRedTarget);
-     m_colorMatcher.addColorMatch(Constants.ColorConstants.kYellowTarget);
+    m_colorMatcher.addColorMatch(Constants.ColorConstants.kBlueTarget);
+    m_colorMatcher.addColorMatch(Constants.ColorConstants.kGreenTarget);
+    m_colorMatcher.addColorMatch(Constants.ColorConstants.kRedTarget);
+    m_colorMatcher.addColorMatch(Constants.ColorConstants.kYellowTarget);
 
   }
 
@@ -38,7 +38,7 @@ public class ColorSensor extends SubsystemBase {
     //Color detectedColor = new Color(1, 0, 0);
 
     String colorString = "NoColor";
-    ColorMatchResult match = m_colorMatcher.matchClosestColor(new Color(detectedColor.red/255,detectedColor.green/255,detectedColor.blue/255));
+    ColorMatchResult match = m_colorMatcher.matchClosestColor(new Color(detectedColor.red,detectedColor.green,detectedColor.blue));
 
     LEDs.allLEDS(m_colorSensor.getRed(),m_colorSensor.getGreen(),m_colorSensor.getBlue()); //chNGES COLOR TO BLUE
 
@@ -55,10 +55,24 @@ public class ColorSensor extends SubsystemBase {
     } else {
       colorString = "Unknown";
     }
-    System.out.println("Matched Color " + colorString + match.color + "Confidence: " + match.confidence );
+    System.out.println("Matched Color: " + colorString + match.color + "Confidence: " + match.confidence );
 
     System.out.println("Detected Color R =  " + detectedColor.red + "Detected Color G =" + detectedColor.green +"Detected Color B =" + detectedColor.blue );
     System.out.println("Red: " + m_colorSensor.getRed() + "Green:" + m_colorSensor.getGreen() + "Blue: " + m_colorSensor.getBlue());
+
+    
+    if (colorString.equals("Red")){
+      LEDs.allLEDS (200, 0, 0);
+    } else if (colorString.equals("Green")){
+      LEDs.allLEDS(0, 200, 0);
+    } else if (colorString.equals("Yellow")){
+      LEDs.allLEDS (128, 128, 0);
+    
+    } else if (colorString.equals("Blue")){
+      LEDs.allLEDS (0, 0, 200);
+    } else {
+      LEDs.allLEDS (0, 0, 0);
+    }
   }
 
 }
