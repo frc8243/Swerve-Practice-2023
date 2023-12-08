@@ -17,7 +17,7 @@ public class Constants {
      * Constants that effect how the robot drives - chassis size, offsets & CAN IDs
      */
     public static final class DriveConstants {
-        public static final double kMaxSpeedMetersPerSecond = 2.4;
+        public static final double kMaxSpeedMetersPerSecond = 4;
         public static final double kMaxAngularSpeed = 2 * Math.PI; // Radians per Second
 
         public static final double kDirectionSlewRate = 1.2; // radians per second
