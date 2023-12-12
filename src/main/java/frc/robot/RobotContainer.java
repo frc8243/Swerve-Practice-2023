@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -58,6 +59,7 @@ public class RobotContainer {
     m_gyro = new Gyro();
     m_pdp = new PowerDistribution(1, ModuleType.kRev);
     m_vision = new Vision();
+    System.out.println("PrintsWorking!");
 
     SmartDashboard.putData(m_pdp);
     SmartDashboard.putData(m_drivetrain);
@@ -76,8 +78,13 @@ public class RobotContainer {
     SmartDashboard.putNumber("Controls/Left Stick X", driverController.getLeftX());
     SmartDashboard.putNumber("Controls/Right Stick X", driverController.getRightX());
     SmartDashboard.putBoolean("Controls/Field Oriented", fieldOrientedDrive);
-    autoChooser = AutoBuilder.buildAutoChooser();
+    NamedCommands.registerCommand("a", new InstantCommand(m_drivetrain::print));
+    autoChooser = AutoBuilder.buildAutoChooser();//Causes NamedCommands to not register below this line 
+    NamedCommands.registerCommand("setX", new InstantCommand(m_drivetrain::setX));
+    
     SmartDashboard.putData("Auto Chooser", autoChooser);
+
+
   }
 
   public static RobotContainer getInstance() {
@@ -95,6 +102,7 @@ public class RobotContainer {
 
     driverController.y().onTrue(
       new InstantCommand(m_gyro::resetYaw)
+      
     );
 
     driverController.povUp().whileTrue(

@@ -274,6 +274,10 @@ public class Drivetrain extends SubsystemBase {
     m_rearLeft.resetEncoders();
     m_frontRight.resetEncoders();
     m_rearRight.resetEncoders();
+    System.out.println("Encoders Reset");
+  }
+  public void print(){
+    System.out.println("InstantsWork");
   }
 
 }

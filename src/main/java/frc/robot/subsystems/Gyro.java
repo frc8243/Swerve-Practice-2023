@@ -50,5 +50,6 @@ public class Gyro extends SubsystemBase {
 
   public void resetYaw() {
     gyro.setYaw(0);
+    System.out.println("Yaw Reset");
   }
 }
