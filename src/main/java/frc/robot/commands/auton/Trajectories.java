@@ -17,7 +17,7 @@ import frc.robot.Constants.*;
  */
 public class Trajectories {
     static TrajectoryConfig config = new TrajectoryConfig(
-        AutoConstants.kMaxSpeedMetersPerSecond,
+        AutoConstants.kMaxModuleSpeedMetersPerSecond,
         AutoConstants.kMaxAccelerationMetersPerSecondSquared)
         // Add kinematics to ensure max speed is actually obeyed
         .setKinematics(DriveConstants.kDriveKinematics);

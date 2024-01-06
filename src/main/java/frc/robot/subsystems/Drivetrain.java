@@ -85,7 +85,7 @@ public class Drivetrain extends SubsystemBase {
       new HolonomicPathFollowerConfig(
         new PIDConstants(2.9, 0, 0.1), // Translation 
         new PIDConstants(0.975, 0, 0), // Rotation
-        AutoConstants.kMaxSpeedMetersPerSecond,
+        AutoConstants.kMaxModuleSpeedMetersPerSecond,
         0.385, // METERS
         new ReplanningConfig()
       ),

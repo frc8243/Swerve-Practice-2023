@@ -1,0 +1,103 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.0,
+        "y": 1.0
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 3.118033988749895,
+        "y": 1.0
+      },
+      "isLocked": false
+    },
+    {
+      "anchor": {
+        "x": 6.447270397078865,
+        "y": 0.8952164097221601
+      },
+      "prevControl": {
+        "x": 5.917068761417638,
+        "y": 0.8952164097221601
+      },
+      "nextControl": {
+        "x": 6.977472032740093,
+        "y": 0.8952164097221601
+      },
+      "isLocked": false
+    },
+    {
+      "anchor": {
+        "x": 2.0,
+        "y": 1.6358045304923103
+      },
+      "prevControl": {
+        "x": 1.4768090542399466,
+        "y": 1.861215595559
+      },
+      "nextControl": {
+        "x": 5.589003969886112,
+        "y": 0.08952164097221774
+      },
+      "isLocked": false
+    },
+    {
+      "anchor": {
+        "x": 6.447270397078865,
+        "y": 2.1566577143306573
+      },
+      "prevControl": {
+        "x": 5.548938030770211,
+        "y": 2.1566577143306573
+      },
+      "nextControl": {
+        "x": 7.34560276338752,
+        "y": 2.1566577143306573
+      },
+      "isLocked": false
+    },
+    {
+      "anchor": {
+        "x": 2.0,
+        "y": 2.1566577143306573
+      },
+      "prevControl": {
+        "x": 2.8463864237373153,
+        "y": 1.0661213606691176
+      },
+      "nextControl": null,
+      "isLocked": false
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": 0.0
+    },
+    {
+      "waypointRelativePos": 1.9,
+      "rotationDegrees": 180.0
+    },
+    {
+      "waypointRelativePos": 2.75,
+      "rotationDegrees": 0.0
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 540.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "reversed": false,
+  "folder": null,
+  "previewStartingState": null
+}
